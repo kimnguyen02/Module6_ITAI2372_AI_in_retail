@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Product Description Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 750px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #f4f6f8;
+            color: #222;
+        }
+        .container {
+            background: white;
+            padding: 28px;
+            border-radius: 12px;
+        }
+        input, textarea, button {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 12px;
+            margin-top: 8px;
+            margin-bottom: 18px;
+            font-size: 16px;
+        }
+        button {
+            background: #2457a7;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        .result {
+            background: #eef5ff;
+            padding: 18px;
+            border-radius: 8px;
+            white-space: pre-wrap;
+            overflow-wrap: anywhere;
+        }
+        .error {
+            color: #b00020;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>AI Product Description Generator</h1>
+        <p>Create a product description using AI and your keywords.</p>
+
+        <form method="POST">
+            <label for="product_name">Product Name</label>
+            <input
+                type="text"
+                id="product_name"
+                name="product_name"
+                placeholder="e.g., Stainless Steel Water Bottle"
+                value="{{ product_name }}"
+                required
+            >
+
+            <label for="keywords">Keywords (comma-separated)</label>
+            <textarea
+                id="keywords"
+                name="keywords"
+                rows="3"
+                placeholder="e.g., reusable, durable, eco-friendly"
+                required
+            >{{ keywords }}</textarea>
+
+            <button type="submit">Generate Description</button>
+        </form>
+
+        {% if description %}
+            <h2>Generated Product Description</h2>
+            <div class="result">{{ description }}</div>
+        {% endif %}
+
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>
